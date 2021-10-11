@@ -134,13 +134,19 @@
         <script src="{{ asset('js/app.js') }}"></script>
 
         <script>
-            //public  channel message
+            //event  channel message
             /*Echo.channel('events')
                 .listen('RealTimeMessage', (e) => console.log('RealTimeMessage: ' + e.message));*/
 
-            //private  channel message
+            //private  event channel message
             Echo.private('events')
                 .listen('RealTimeMessage', (e) => console.log('Private RealTimeMessage: ' + e.message));
+
+            // Example - Notification
+            Echo.private('App.Models.User.1')
+                .notification((notification) => {
+                    console.log(notification.message);
+                });
 
         </script>
 
