@@ -24,3 +24,16 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+//real time message send using event channel
+Route::get('/real-time-event', function(){
+    event(new App\Events\RealTimeMessage('RealTimeMessage send'));
+    dd('real-time-event send');
+});
+
+//real time message send using notification
+Route::get('/real-time-notification', function(){
+    $user = User::first();
+    $user->notify(new App\Notifications\RealTimeNotification('RealTimeNotification message send'));
+    dd('real-time-notification send');
+});
